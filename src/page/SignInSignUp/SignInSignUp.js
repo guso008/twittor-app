@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,26 +6,36 @@ import {
   faUsers,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
+import BasicModal from "../../components/Modal/BasicModal/BasicModal";
 import LogoTwittor from "../../assets/png/logo.png";
 import LogoWhiteTwitter from "../../assets/png/logo-white.png";
 
 import "./SignInSignUp.scss";
 
 export default function SignInSignUp() {
+  const [showModal, setShowModal] = useState(true);
+  const [contentModal, setContentModal] = useState(null);
   return (
-    <Container className="signin-signup" fluid>
-      <Row>
-        <LeftComponent />
-        <RightComponent />
-      </Row>
-    </Container>
+    <>
+      <Container className="signin-signup" fluid>
+        <Row>
+          <LeftComponent />
+          <RightComponent />
+        </Row>
+      </Container>
+      <BasicModal show={showModal} setShow={setShowModal}>
+        <div>
+          <h2>Modal Content</h2>
+        </div>
+      </BasicModal>
+    </>
   );
 }
 
 function LeftComponent() {
   return (
     <Col className="signin-signup__left" xs={6}>
-      <img src={LogoTwittor} alt="Twittor" />
+      {/*<img src={LogoTwittor} alt="Twittor" />*/}
       <div>
         <h2>
           <FontAwesomeIcon icon={faSearch} />
