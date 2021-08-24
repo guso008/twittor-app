@@ -7,6 +7,7 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import BasicModal from "../../components/Modal/BasicModal/BasicModal";
+import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import LogoTwittor from "../../assets/png/logo.png";
 import LogoWhiteTwitter from "../../assets/png/logo-white.png";
 
@@ -68,7 +69,9 @@ function RightComponent(props) {
         <h3>Unete a Twittor hoy mismo</h3>
         <Button
           variant="primary"
-          onClick={() => openModal(<h2>Formulario de Registro</h2>)}
+          onClick={() =>
+            openModal(<SignUpForm setShowModal={setShowModal}></SignUpForm>)
+          }
         >
           Regístrate
         </Button>
