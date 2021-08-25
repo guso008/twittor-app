@@ -40,7 +40,7 @@ export default function SignInSignUp() {
 function LeftComponent() {
   return (
     <Col className="signin-signup__left" xs={6}>
-      {/*<img src={LogoTwittor} alt="Twittor" />*/}
+      <img src={LogoTwittor} alt="Twittor" />
       <div>
         <h2>
           <FontAwesomeIcon icon={faSearch} />

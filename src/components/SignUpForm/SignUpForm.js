@@ -24,14 +24,17 @@ export default function SignUpForm(props) {
           </Row>
         </Form.Group>
         <Form.Group>
+          <Form.Label></Form.Label>
           <Form.Control type="email" placeholder="Correo electronico" />
         </Form.Group>
         <Form.Group>
           <Row>
             <Col>
+              <Form.Label></Form.Label>
               <Form.Control type="password" placeholder="Contraseña" />
             </Col>
             <Col>
+              <Form.Label></Form.Label>
               <Form.Control type="password" placeholder="Repetir contraseña" />
             </Col>
           </Row>
