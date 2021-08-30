@@ -15,6 +15,7 @@ export default function App() {
         <h1>No esta logueado!</h1>
       )}
       <ToastContainer
+        theme="colored"
         position="top-right"
         autoClose={5000}
         hideProgressBar
