@@ -7,7 +7,8 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import BasicModal from "../../components/Modal/BasicModal/BasicModal";
-import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import SignUpForm from "../../components/SignUpForm";
+import SignInForm from "../../components/SignInForm";
 import LogoTwittor from "../../assets/png/logo.png";
 import LogoWhiteTwitter from "../../assets/png/logo-white.png";
 
@@ -77,7 +78,7 @@ function RightComponent(props) {
         </Button>
         <Button
           variant="outline-primary"
-          onClick={() => openModal(<h2>Formulario de Login</h2>)}
+          onClick={() => openModal(<SignInForm />)}
         >
           Iniciar Sessión
         </Button>
