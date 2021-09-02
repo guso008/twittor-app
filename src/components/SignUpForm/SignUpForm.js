@@ -25,7 +25,7 @@ export default function SignUpForm(props) {
     if (validCount !== size(formData)) {
       toast.warning("Completa todos los campos del formulario");
     } else {
-      if (isEmailValid(formData.email)) {
+      if (!isEmailValid(formData.email)) {
         toast.warning("Email invalido");
       } else if (formData.password !== formData.repeatPassword) {
         toast.warning("Las contraseñas tienen que ser iguales");
