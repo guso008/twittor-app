@@ -3,7 +3,7 @@ import { Form, Button, Spinner } from "react-bootstrap";
 import { values, size } from "lodash";
 import { toast } from "react-toastify";
 import { isEmailValid } from "../../utils/validations";
-import { signInApi } from "../../api/auth";
+import { signInApi, setTokenApi } from "../../api/auth";
 
 import "./SignInForm.scss";
 
@@ -33,6 +33,7 @@ export default function SignInForm() {
               toast.warning(response.message);
             } else {
               console.log(response.token);
+              setTokenApi(response.token);
             }
           })
           .catch(() => {
