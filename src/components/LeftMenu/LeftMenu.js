@@ -8,11 +8,19 @@ import {
   faUsers,
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
+import { logoutApi } from "../../api/auth";
 import LogoWhite from "../../assets/png/logo-white.png";
 
 import "./LeftMenu.scss";
 
-export default function LeftMenu() {
+export default function LeftMenu(props) {
+  const { setRefreshCheckLogin } = props;
+
+  const logout = () => {
+    logoutApi();
+    setRefreshCheckLogin(true);
+  };
+
   return (
     <div className="left-menu">
       <img className="logo" src={LogoWhite} alt="Twittor" />
@@ -28,7 +36,7 @@ export default function LeftMenu() {
         <FontAwesomeIcon icon={faUser} />
         Perfil
       </Link>
-      <Link to="/logout">
+      <Link to="" onClick={logout}>
         <FontAwesomeIcon icon={faPowerOff} />
         Cerrar sessión
       </Link>
