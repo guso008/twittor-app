@@ -4,8 +4,6 @@ import { map } from "lodash";
 import configRouting from "./configRouting";
 
 export default function Routing() {
-  console.log("ROUTING: " + configRouting);
-
   return (
     <Router>
       <Switch>

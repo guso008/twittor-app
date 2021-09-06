@@ -20,7 +20,6 @@ export default function SignInForm(props) {
       return null;
     });
 
-    console.log(validCount);
     if (size(formData) !== validCount) {
       toast.warning("Completa todos los campos del formulario");
     } else {
