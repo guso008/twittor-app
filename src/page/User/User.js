@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Spinner } from "bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 import BasicLayout from "../../layout/BasicLayout";
+import BannerAvatar from "../../components/User/BannerAvatar/BannerAvatar";
 import { getUserApi } from "../../api/user";
 
 import "./User.scss";
@@ -11,12 +13,13 @@ function User(props) {
   const { match } = props;
   const [user, setUser] = useState(null);
   const { params } = match;
-  console.log(params.id);
+  const loggedUser = useAuth();
+
+  console.log("UserLogged: " + loggedUser);
 
   useEffect(() => {
     getUserApi(params.id)
       .then((response) => {
-        console.log(response);
         setUser(response);
         if (!response) toast.error("El usuario que has visitado no existe");
       })
@@ -28,9 +31,11 @@ function User(props) {
   return (
     <BasicLayout className="user">
       <div className="user__title">
-        <h2>Guso O</h2>
+        <h2>
+          {user ? `${user.nombre} ${user.apellidos}` : "Este usuario no existe"}
+        </h2>
       </div>
-      <div>Banner Usuario</div>
+      <BannerAvatar user={user} loggedUser={loggedUser} />
       <div>Info Usuario</div>
       <div className="user__tweets">Lista de Tweets!</div>
     </BasicLayout>
