@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 
 ReactDOM.render(<App />, document.getElementById("root"));
