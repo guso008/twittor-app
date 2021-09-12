@@ -10,6 +10,10 @@ export default function EditForm(props) {
   const { user, setShowModal } = props;
   const [formData, setFormData] = useState(initialValue(user));
 
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("Editando usuario...");
@@ -27,6 +31,7 @@ export default function EditForm(props) {
                 placeholder="Nombre"
                 name="nombre"
                 defaultValue={formData.nombre}
+                onChange={onChange}
               />
             </Col>
             <Col>
@@ -36,6 +41,7 @@ export default function EditForm(props) {
                 placeholder="Apellidos"
                 name="apellidos"
                 defaultValue={formData.apellidos}
+                onChange={onChange}
               />
             </Col>
           </Row>
@@ -49,6 +55,7 @@ export default function EditForm(props) {
             type="text"
             name="biografia"
             defaultValue={formData.biografia}
+            onChange={onChange}
           />
         </Form.Group>
         <Form.Group>
@@ -58,6 +65,7 @@ export default function EditForm(props) {
             placeholder="Sitio Web"
             name="sitioWeb"
             defaultValue={formData.sitioWeb}
+            onChange={onChange}
           />
           <Form.Label></Form.Label>
         </Form.Group>
@@ -66,6 +74,9 @@ export default function EditForm(props) {
             placeholder="Fecha de Nacimiento"
             locale={es}
             selected={new Date(formData.fechaNacimiento)}
+            onChange={(value) =>
+              setFormData({ ...formData, fechaNacimiento: value })
+            }
           />
         </Form.Group>
         <Button className="btn-submit" variant="primary" type="submit">
