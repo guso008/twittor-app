@@ -3,8 +3,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import es from "date-fns/locale/es";
 import { useDropzone } from "react-dropzone";
+import { toast } from "react-toastify";
 import { API_HOST } from "../../../utils/constant";
 import { Camera } from "../../../utils/Icons";
+import { uploadBannerApi } from "../../../api/user";
 
 import "./EditForm.scss";
 
@@ -39,7 +41,6 @@ export default function EditForm(props) {
   });
 
   const onDropAvatar = useCallback((acceptedFile) => {
-    console.log(acceptedFile);
     const file = acceptedFile[0];
     setAvatarUrl(URL.createObjectURL(file));
     setAvatarFile(file);
@@ -61,7 +62,12 @@ export default function EditForm(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Editando usuario...");
+
+    if (bannerFile) {
+      uploadBannerApi(bannerFile).catch(() => {
+        toast.error("Error al subir el nuevo banner");
+      });
+    }
   };
 
   return (
