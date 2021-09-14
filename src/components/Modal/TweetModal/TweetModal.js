@@ -6,6 +6,11 @@ import "./TweetModal.scss";
 
 export default function TweetModal(props) {
   const { show, setShow } = props;
+  const [message, setMessage] = useState("");
+
+  const onSubmit = () => {
+    console.log("Enviando Tweet!!");
+  };
 
   return (
     <Modal
@@ -20,7 +25,17 @@ export default function TweetModal(props) {
           <Close onClick={() => setShow(false)} />
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>.......</Modal.Body>
+      <Modal.Body>
+        <Form onSubmit={onSubmit}>
+          <Form.Control
+            as="textarea"
+            rows="6"
+            placeholder="¿Que estás pensando?"
+          />
+          <span className="count">{message.length}</span>
+          <Button type="submit">Twittoar</Button>
+        </Form>
+      </Modal.Body>
     </Modal>
   );
 }
