@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { map } from "lodash";
+import moment from "moment";
+import { getUserApi } from "../../api/user";
+import { API_HOST } from "../../utils/constant";
+import AvatarNotFound from "../../assets/png/avatar-no-found.png";
 
 import "./ListTweets.scss";
 
@@ -18,7 +22,30 @@ export default function ListTweets(props) {
 
 function Tweet(props) {
   const { tweet } = props;
-  console.log(tweet);
+  const [userInfo, setUserInfo] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
-  return <h2>{tweet.Mensaje}</h2>;
+  useEffect(() => {
+    getUserApi(tweet.userid).then((response) => {
+      setUserInfo(response);
+      setAvatarUrl(
+        response?.avatar
+          ? `${API_HOST}/obtenerAvatar?id=${response.id}`
+          : AvatarNotFound
+      );
+    });
+  }, [tweet]);
+
+  return (
+    <div className="tweet">
+      <Image className="avatar" src={avatarUrl} roundedCircle />
+      <div>
+        <div className="name">
+          {userInfo?.nombre} {userInfo?.apellidos}
+          <span>{moment(tweet.Fecha).calendar()}</span>
+        </div>
+        <div>{tweet.Mensaje}</div>
+      </div>
+    </div>
+  );
 }
