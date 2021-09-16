@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { map } from "lodash";
 import moment from "moment";
+import AvatarNotFound from "../../assets/png/avatar-no-found.png";
 import { getUserApi } from "../../api/user";
 import { API_HOST } from "../../utils/constant";
-import AvatarNotFound from "../../assets/png/avatar-no-found.png";
+import { replaceURLWithHTMLLinks } from "../../utils/functions";
 
 import "./ListTweets.scss";
 
@@ -44,7 +45,11 @@ function Tweet(props) {
           {userInfo?.nombre} {userInfo?.apellidos}
           <span>{moment(tweet.Fecha).calendar()}</span>
         </div>
-        <div>{tweet.Mensaje}</div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: replaceURLWithHTMLLinks(tweet.Mensaje),
+          }}
+        />
       </div>
     </div>
   );
