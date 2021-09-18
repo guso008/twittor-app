@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Spinner, ButtonGroup, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
+import { isEmpty } from "lodash";
 import BasicLayout from "../../layout/BasicLayout";
+import ListUsers from "../../components/ListUsers/ListUsers";
 import { getFollowsApi } from "../../api/follow";
 
 import "./Users.scss";
@@ -17,7 +19,11 @@ function Users(props) {
   useEffect(() => {
     getFollowsApi(queryString.stringify(params))
       .then((response) => {
-        console.log(response);
+        if (isEmpty(response)) {
+          setUsers([]);
+        } else {
+          setUsers(response);
+        }
       })
       .catch(() => {
         setUsers([]);
@@ -38,6 +44,15 @@ function Users(props) {
         <Button className="active">Siguiendo</Button>
         <Button>Nuevos</Button>
       </ButtonGroup>
+
+      {!users ? (
+        <div className="users__loading">
+          <Spinner animation="border" variant="info" />
+          Buscando usuarios
+        </div>
+      ) : (
+        <ListUsers users={users} />
+      )}
     </BasicLayout>
   );
 }
