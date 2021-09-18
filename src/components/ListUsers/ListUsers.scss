@@ -4,9 +4,15 @@
   padding: 0;
 
   &__user {
+    display: flex;
+    align-items: center;
     padding: 15px 30px;
     color: $font-light;
     border-bottom: 1px solid $border-grey;
+
+    .media-body {
+      padding: 15px;
+    }
 
     &:hover {
       color: $font-light;
