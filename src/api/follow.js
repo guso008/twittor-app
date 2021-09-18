@@ -1,3 +1,4 @@
+import { result } from "lodash";
 import { API_HOST } from "../utils/constant";
 import { getTokenApi } from "./auth";
 
@@ -49,6 +50,27 @@ export function unfollowUserApi(idUser) {
 
   const params = {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${getTokenApi()}`,
+    },
+  };
+
+  return fetch(url, params)
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      return err;
+    });
+}
+
+export function getFollowsApi(paramsUrl) {
+  const url = `${API_HOST}/listaUsuarios?${paramsUrl}`;
+
+  const params = {
     headers: {
       Authorization: `Bearer ${getTokenApi()}`,
     },
