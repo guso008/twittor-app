@@ -41,8 +41,7 @@
       &:hover {
         background-color: rgba(29, 161, 242, 0.1) !important;
       }
-
-      &:active {
+      &.active {
         border-bottom: 3px solid $primary;
       }
     }
