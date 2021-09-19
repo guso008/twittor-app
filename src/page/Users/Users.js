@@ -3,6 +3,7 @@ import { Spinner, ButtonGroup, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
 import { isEmpty } from "lodash";
+import { useDebouncedCallback } from "use-debounce";
 import BasicLayout from "../../layout/BasicLayout";
 import ListUsers from "../../components/ListUsers/ListUsers";
 import { getFollowsApi } from "../../api/follow";
@@ -14,6 +15,13 @@ function Users(props) {
   const [users, setUsers] = useState(null);
   const params = useUsersQuery(location);
   const [typeUser, setTypeUser] = useState(params.type || "follow");
+
+  const onSearch = useDebouncedCallback((value) => {
+    setUsers(null);
+    history.push({
+      search: queryString.stringify({ ...params, search: value, page: 1 }),
+    });
+  }, 200);
 
   useEffect(() => {
     getFollowsApi(queryString.stringify(params))
@@ -52,7 +60,11 @@ function Users(props) {
     >
       <div className="users__title">
         <h2>Users</h2>
-        <input type="text" placeholder="Busca un usario" />
+        <input
+          type="text"
+          placeholder="Busca un usuario..."
+          onChange={(e) => onSearch(e.target.value)}
+        />
       </div>
       <ButtonGroup className="users__options">
         <Button
