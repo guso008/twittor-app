@@ -46,3 +46,22 @@ export function getUserTweetApi(idUser, page) {
       return err;
     });
 }
+
+export function getTweetsFollowerApi(page = 1) {
+  const url = `${API_HOST}/leoTweetsSeguidores?pagina=${page}`;
+
+  const params = {
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${getTokenApi()}`,
+    },
+  };
+
+  return fetch(url, params)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      return err;
+    });
+}
