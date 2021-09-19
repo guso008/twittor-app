@@ -22,12 +22,14 @@ export default function ListTweets(props) {
 }
 
 function Tweet(props) {
+  console.log(props);
   const { tweet } = props;
   const [userInfo, setUserInfo] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
 
   useEffect(() => {
     getUserApi(tweet.userid).then((response) => {
+      console.log(response);
       setUserInfo(response);
       setAvatarUrl(
         response?.avatar
